@@ -1,0 +1,17 @@
+<% i = 1 %>
+<% @phones.each do |phone| %>
+  <tr>
+    <td><%= i %></td>
+    <% if current_user.admin %>
+      <td><%= phone.user_id %></td>
+      <td><%= phone.user.name %></td>
+    <% end %>
+    <td><%= phone.phone_title %></td>
+    <td><%= phone.phone_number %></td>
+    <td>
+      <%= link_to "Edit", edit_phone_path(phone), remote: true, class: "btn btn-default" %>
+      <%= link_to "Delete", phone_delete_path(phone), remote: true, class: "btn btn-danger" %>
+    </td>
+  </tr>
+<% i+=1 %>
+<% end %>

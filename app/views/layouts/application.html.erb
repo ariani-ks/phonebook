@@ -4,11 +4,33 @@
   <title>Phonebook</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
 
-<%= yield %>
+  <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <body class="hold-transition skin-blue sidebar-mini">
+      <%= render 'layouts/header' %>
+      <!-- <p class="navbar-text pull-right">
+        Logged in as <strong><%= current_user.email %></strong>.
+      </p> -->
+  <% else %>
+    <body class="hold-transition login-page">
+      <p class="navbar-text pull-right">
+        <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+        <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+      </p>
+      <%= yield %>
+  <% end %>
+
+
 
 </body>
 </html>

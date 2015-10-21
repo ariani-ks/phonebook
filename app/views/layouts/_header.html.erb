@@ -1,0 +1,147 @@
+<div class="wrapper">
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="index2.html" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>A</b>LT</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>Admin</b>LTE</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <%= image_tag("user2-160x160.jpg", class: "user-image", :alt => "User Image") %>
+              <span class="hidden-xs"><strong><%= current_user.id %> <%= current_user.email %></strong></span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <%= image_tag("user2-160x160.jpg", class: "img-circle", :alt => "User Image") %>
+                <p>
+                  <%= current_user.name %>
+
+                  <small>
+                    <% if current_user.admin %>
+                      Admin
+                    <% else %>
+                      User
+                    <% end %>
+                  </small>
+                </p>
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <%= link_to 'Edit Profile', edit_user_registration_path, :class => 'btn btn-default btn-flat' %> |
+                </div>
+                <div class="pull-right">
+                  <%= link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'btn btn-default btn-flat' %>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <%= image_tag("user2-160x160.jpg", class: "img-circle", :alt => "User Image") %>
+        </div>
+        <div class="pull-left info">
+          <p><%= current_user.name %></p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
+      <!-- search form -->
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+          <span class="input-group-btn">
+            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+          </span>
+        </div>
+      </form>
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu">
+        <li class="header">MAIN NAVIGATION</li>
+        <li class="<%= 'active' if current_page?(root_path) %> treeview">
+          <%= link_to root_path do %>
+            <i class="fa fa-dashboard"></i>
+            <%= content_tag :span, "Dashboard" %>
+            <i class="fa fa-angle-left pull-right"></i>
+          <% end %>
+        </li>
+        <% if current_user.admin %>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>User</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> List User</a></li>
+          </ul>
+        </li>
+        <% end %>
+        <li class="<%= 'active' if current_page?(phones_path) %>">
+          <%= link_to phones_path do %>
+            <i class="fa fa-book"></i>
+            <%= content_tag :span, "Phone Book" %>
+          <% end %>
+        </li>
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <%= @page_title %>
+        <small>Control panel</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><%= @page_title %></li>
+      </ol>
+    </section>
+
+    <!--  RENDER CONTENT PAGE -->
+    <%= yield %>
+
+  </div><!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.3.0
+    </div>
+    <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div><!-- ./wrapper -->
