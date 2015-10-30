@@ -8,7 +8,6 @@ class ContactsController < ApplicationController
   def index
     @contacts = Contact.accessible_by(current_ability).order(:id).page(params[:page]).per(5)
     @page_title = "List Contacts"
-
     # @abc = Phone.find(1) mencari phone ber id 1
   end
 
