@@ -28,6 +28,8 @@ gem 'cancancan', '~> 1.10'
 
 gem 'kaminari'
 
+gem 'devise'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -46,7 +48,6 @@ group :development, :test do
   gem 'byebug'
   gem 'sqlite3'
   gem 'rspec-rails', '~> 3.0'
-  gem 'devise'
   gem 'faker'
   gem 'selenium-webdriver'
 end
