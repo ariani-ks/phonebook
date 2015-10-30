@@ -1,0 +1,70 @@
+<% i = 1 %>
+<% @contacts.each do |contact| %>
+  <tr onclick = "get_phone(<%= contact.id %>)" id="<%= dom_id(contact) %>" >
+    <td><%= i %></td>
+    <% if current_user.admin %>
+      <td><%= contact.user_id %></td>
+      <td><%= contact.user.name %></td>
+    <% end %>
+    <td><%= contact.name %></td>
+    <td>
+      <!-- tmbh parameter pada new_phone_path krn action new defaultny tdk menerima param -->
+      <%= link_to "Add Phone Number", new_phone_path(:contact_id => contact.id, :contact_name => contact.user.name), remote: true, class: "btn btn-default" %>
+      <%= link_to "Edit", edit_contact_path(contact), remote: true, class: "btn btn-default" %>
+      <%= link_to "Delete", contact_delete_path(contact), remote: true, class: "btn btn-danger" %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="5"><h4>Contact Phone Number</h4>
+      <div class="col-xs-6">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Phone Title</th>
+              <th>Phone Number</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="phone_table_<%= contact.id %>">
+          </tbody>
+        </table>
+      </div>
+    </td>
+  </tr>
+<% i+=1 %>
+<% end %>
+
+
+<script>
+  function get_phone(contact_id)
+  {
+      // alert(contact_id)
+      $.ajax({
+  			url: "<%= all_phones_path %>",
+  			//type: "POST",
+  			data: { param_contact_id: contact_id },
+  			success:function(data)
+  			{
+            $('#phone_table_'+contact_id).html("");
+            no = 1;
+            // console.log("<%= @phones %>")
+            //console.log(data[0].phone_number)
+            $.each(data, function(key, value)
+	          {
+              var row =
+      				'<tr id="phone_' + value.id +'">'+
+      					'<td>' + no +'</td>'+
+      					'<td>' + value.phone_title +'</td>'+
+      					'<td>' + value.phone_number +'</td>'+
+      					'<td><a href="phones/' + value.id + '/edit" data-remote="true"><button class="btn btn-default">Edit</button></a> '+
+                '<a href="phones/' + value.id + '/delete" data-remote="true"><button class="btn btn-danger">Delete</button></a></td>'+
+      				'</tr>';
+              $('#phone_table_' + contact_id).append(row);
+              no++;
+            });
+        }
+      });
+
+  }
+</script>

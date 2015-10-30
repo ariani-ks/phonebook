@@ -1,0 +1,10 @@
+$("ul.errors").html("")
+<% if @contact.errors.any? %>
+  <% @contact.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
+  <% end %>
+<% else %>
+  $(".contacts-index").html("<%= escape_javascript(render 'index') %>")
+  $("#contact-modal").modal("hide")
+  expand_table()
+<% end %>

@@ -1,0 +1,15 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+    <h3>Delete Phone Number</h3>
+  </div>
+  <div class="modal-body">
+  <ul class="errors"></ul>
+  Are you sure you wish to delete this contact <b><%= @contact.name %></b>?
+  </div>
+  <div class="modal-footer">
+    <%= link_to "Yes", contact_path(@contact), method: :delete, remote: true, class: "btn btn-danger" %>
+    <%= link_to "No", "#", class: "btn btn-default", data: { dismiss: "modal" } %>
+  </div>
+  </div>
+</div>

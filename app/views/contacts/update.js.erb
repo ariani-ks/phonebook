@@ -1,0 +1,11 @@
+$("ul.errors").html("")
+<% if @contact.errors.any? %>
+  $("ul.errors").append("<li><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</li>")
+  <% @contact.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
+  <% end %>
+<% else %>
+  $(".contacts-index").html("<%= escape_javascript(render 'index') %>")
+  $("#contact-modal").modal("hide")
+  expand_table()
+<% end %>

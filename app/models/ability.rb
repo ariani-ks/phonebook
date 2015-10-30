@@ -37,7 +37,8 @@ class Ability
     else
       # non-admin abilities
       # can :read, :all
-      can :manage, Phone, :user_id => user.id #manage user own entry
+      can :manage, Contact, :user_id => user.id #manage user own entry
+      can :manage, Phone
 
     end
 

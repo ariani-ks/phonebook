@@ -1,0 +1,54 @@
+<!-- Main content -->
+<section class="content">
+  <!-- Small boxes (Stat box) -->
+  <div class="row">
+    <div class="col-xs-1">
+      <div class="panel-heading">
+        <%= link_to "Add New", new_contact_path, remote:true, class: "btn btn-primary" %>
+      </div>
+    </div>
+    <div class="col-xs-3 pull-right">
+      <div class="panel-heading">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-search"></i></span>
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-body">
+          <table class="table table-bordered table-expandable table-striped">
+            <thead>
+              <tr>
+                <th>No</th>
+                <% if current_user.admin %>
+                  <th>User ID</th>
+                  <th>User Name</th>
+                <% end %>
+                <th>Contact Name</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody class="contacts-index">
+              <%= render "index" %>
+            </tbody>
+          </table>
+          <center><%= paginate(@contacts) %></center>
+        </div>
+      </div>
+    </div><!-- ./col -->
+  </div><!-- /.row -->
+  <!-- Main row -->
+
+  <div class="row">
+    <!-- Left col -->
+    <section class="col-lg-7">
+    </section><!-- right col -->
+  </div><!-- /.row (main row) -->
+
+</section><!-- /.content -->
+
+<div id="contact-modal" class="modal fade"></div>
+<div id="phone-modal" class="modal fade"></div>

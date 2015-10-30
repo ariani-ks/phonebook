@@ -26,6 +26,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'pry'
 
 gem 'cancancan', '~> 1.10'
+
+gem 'kaminari'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -40,6 +43,8 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'
   gem 'devise'
+  gem 'faker'
+  gem 'selenium-webdriver'
 end
 
 group :development do
@@ -52,4 +57,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'capybara-screenshot'
+  gem "factory_girl_rails", "~> 4.0"
+  gem 'database_cleaner'
 end

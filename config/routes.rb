@@ -3,13 +3,19 @@ Rails.application.routes.draw do
 
   # get 'phone/new'
 
-  devise_for :users, :controllers => { registrations: 'registrations' } 
+  devise_for :users, :controllers => { registrations: 'registrations' }
+
+  resources :contacts do
+    get "delete"
+  end
 
   resources :phones do
     get "delete"
   end
 
-  root 'phones#dashboard'
+  root 'contacts#dashboard'
+
+  get "/get_phones" => "contacts#get_phones", :as => :all_phones #as = alias
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,9 +1,15 @@
 $("ul.errors").html("")
 <% if @phone.errors.any? %>
+  $("ul.errors").append("<li><%= pluralize(@phone.errors.count, "error") %> prohibited this phone number from being saved:</li>")
   <% @phone.errors.full_messages.each do |message| %>
     $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
   <% end %>
 <% else %>
-  $(".phones-index").html("<%= escape_javascript(render 'index') %>")
   $("#phone-modal").modal("hide")
+  //alert("<%= @phone.contact_id %>")
+
+  <% if (@phone.contact_id) %>
+    //render tabel phone number
+    get_phone(<%= @phone.contact_id %>) //fungsi ada di _index.html contacts
+  <% end %>
 <% end %>

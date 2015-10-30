@@ -102,10 +102,11 @@
           </ul>
         </li>
         <% end %>
-        <li class="<%= 'active' if current_page?(phones_path) %>">
-          <%= link_to phones_path do %>
+        
+        <li class="<%= 'active' if current_page?(contacts_path) %>">
+          <%= link_to contacts_path do %>
             <i class="fa fa-book"></i>
-            <%= content_tag :span, "Phone Book" %>
+            <%= content_tag :span, "Contacts" %>
           <% end %>
         </li>
       </ul>
