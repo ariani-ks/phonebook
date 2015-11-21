@@ -1,7 +1,7 @@
-<% i = 1 %>
-<% @contacts.each do |contact| %>
+<% @contacts.each_with_index do |contact, index| %>
   <tr onclick = "get_phone(<%= contact.id %>)" id="<%= dom_id(contact) %>" >
-    <td><%= i %></td>
+    <% params[:page] ||= 1 %>
+    <td><%= (params[:page].to_i - 1) * 5 + (index + 1) %></td>
     <% if current_user.admin %>
       <td><%= contact.user_id %></td>
       <td><%= contact.user.name %></td>
@@ -32,7 +32,6 @@
       </div>
     </td>
   </tr>
-<% i+=1 %>
 <% end %>
 
 
